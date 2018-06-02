@@ -9,15 +9,9 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:latest
       - image: circleci/mysql:5.7
-      environment:
-        DB_CONNECTION: circle_test
-        APP_ENV: testing
-      services:
-        - mysql
-
-    database:
-      override:
-        - "php artisan migrate"
+        environment:
+          DB_CONNECTION: circle_test
+          APP_ENV: testing
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -46,4 +40,5 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
         
       # run tests!
+      - run: php artisan migrate
       - run: vendor/bin/phpunit
