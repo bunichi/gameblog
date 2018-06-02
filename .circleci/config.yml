@@ -9,11 +9,15 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:latest
       - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_USER=root
-          - MYSQL_PASSWORD=
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
-          - MYSQL_DATABASE=circle_test
+      environment:
+        DB_CONNECTION: circle_test
+        APP_ENV: testing
+      services:
+        - mysql
+
+    database:
+      override:
+        - "php artisan migrate"
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
