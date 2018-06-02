@@ -9,13 +9,17 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:latest
       - image: circleci/mysql:5.7
-        environment:
-          DB_CONNECTION: circle_test
-          APP_ENV: testing
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mysql:9.4
+
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:ERCqhsDGxPM3Q/U+e6zaKrT7R1ce2F1zfL/yxLDE0ag=
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/repo
 
