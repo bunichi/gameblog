@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Article;
 
 class ArticleController extends Controller
 {
     //
     public function index($id = null){
-        return view('article.index', [
-            'title' => $id,
-            'body' => 'My first Laravel.'
-        ]);
-
+        $articles = Article::all();
+        return view('article.index', ['articles' => $articles]);
     }
 }
